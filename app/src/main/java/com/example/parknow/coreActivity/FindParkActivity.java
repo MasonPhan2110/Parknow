@@ -285,14 +285,15 @@ public class FindParkActivity extends AppCompatActivity implements OnMapReadyCal
             }
         }
         TextView name, distance1;
-        Button btn;
-        btn = layout.findViewById(R.id.button);
+        Button btn_book, btn_chat;
+        btn_book = layout.findViewById(R.id.button_book_park);
+        btn_chat = layout.findViewById(R.id.button_chat);
         name = layout.findViewById(R.id.name);
         distance1 = layout.findViewById(R.id.distance);
         name.setText(name_park);
         distance1.setText("0 km");
         String ID = id.toString();
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(FindParkActivity.this);
@@ -366,6 +367,12 @@ public class FindParkActivity extends AppCompatActivity implements OnMapReadyCal
                         });
                     }
                 });
+            }
+        });
+        btn_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
