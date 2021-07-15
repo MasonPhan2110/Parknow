@@ -162,7 +162,7 @@ public class FindParkActivity extends AppCompatActivity implements OnMapReadyCal
                         public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                             LatLng lat_lng = snapshot.getValue(LatLng.class);
                             com.google.android.gms.maps.model.LatLng latLng = new com.google.android.gms.maps.model.LatLng(lat_lng.getLat(),lat_lng.getLng());
-                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name.get(finalI)).
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name.get(finalI) + "/" +ID).
                                     icon(BitmapFromVector(getApplicationContext(), R.drawable.ic_baseline_location_on_24));
                             Marker marker = mMap.addMarker(markerOptions);
                             marker.setTag(id.get(finalI));
@@ -290,7 +290,8 @@ public class FindParkActivity extends AppCompatActivity implements OnMapReadyCal
         btn_chat = layout.findViewById(R.id.button_chat);
         name = layout.findViewById(R.id.name);
         distance1 = layout.findViewById(R.id.distance);
-        name.setText(name_park);
+        String[] name_id = name_park.split("/");
+        name.setText(name_id[0]);
         distance1.setText("0 km");
         String ID = id.toString();
         btn_book.setOnClickListener(new View.OnClickListener() {
@@ -372,7 +373,9 @@ public class FindParkActivity extends AppCompatActivity implements OnMapReadyCal
         btn_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(FindParkActivity.this, MessageActivity.class);
+                intent.putExtra("parkid", name_id[1]);
+                startActivity(intent);
             }
         });
     }
